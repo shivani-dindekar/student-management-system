@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Login</h2>
+@model student_management_system.Models.LoginModel
+
+
+
+@using (Html.BeginForm())
+{
+    <p>Username</p>
+    @Html.TextBoxFor(x => x.Username)
+
+    <p>Password</p>
+    @Html.PasswordFor(x => x.Password)
+
+    <br />
+    <br />
+
+    <input type="submit" value="Login" />
+
+    <br />
+    <br />
+
+    <span style="color:red">
+        @ViewBag.Message
+    </span>
+}
+

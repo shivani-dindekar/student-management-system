@@ -1,0 +1,55 @@
+﻿
+
+
+<script src="~/Scripts/jquery-3.7.0.min.js"></script>
+<script src="~/Content/Student.js"></script>
+
+
+
+@model List<student_management_system.Models.Studentmodel>
+
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>Student List</h2>
+@using (Html.BeginForm("List", "Student", FormMethod.Get))
+{
+    <input type="text" name="search" placeholder="Search Student Name" />
+    <input type="submit" value="Search" />
+}
+<a href="/Student/List">Show All</a>
+<br />
+
+
+
+
+<table border="1" cellpadding="10">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Course</th>
+        <th>Fees</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.Name</td>
+            <td>@item.Course</td>
+            <td>@item.Fees</td>
+            <td>
+                <a href="/Student/Edit/@item.Id">Edit</a>
+            </td>
+            <td>
+                <button type="button" onclick="DeleteStudent(@item.Id)">
+                    Delete
+                </button>
+
+            </td>
+        </tr>
+    }
+</table>

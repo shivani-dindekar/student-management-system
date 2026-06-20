@@ -1,0 +1,26 @@
+﻿@model student_management_system.Models.Studentmodel
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<script src="~/Scripts/jquery-3.7.0.min.js"></script>
+<script src="~/Content/Student.js"></script>
+
+<h2>Edit Student</h2>
+
+<input type="hidden" id="hdnID" value="@Model.Id" />
+
+<p>Name</p>
+<input type="text" id="txtName" value="@Model.Name" />
+
+<p>Course</p>
+<input type="text" id="txtCourse" value="@Model.Course" />
+
+<p>Fees</p>
+<input type="text" id="txtFees" value="@Model.Fees" />
+
+<br />
+<br />
+
+<button type="button" onclick="UpdateStudent()">Update</button>
