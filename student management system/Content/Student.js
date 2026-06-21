@@ -68,14 +68,17 @@ function UpdateStudent() {
 
 
 function DeleteStudent(id) {
-    if (confirm("Are you sure want to delete?")) {
+    if (confirm("Are you sure you want to delete?")) {
         $.ajax({
-            url: "/Student/DeleteStudent",
-            type: "POST",
+            url: '/Student/DeleteStudent',
+            type: 'POST',
             data: { id: id },
             success: function (response) {
                 alert(response.Message);
                 location.reload();
+            },
+            error: function () {
+                alert("Delete Failed");
             }
         });
     }

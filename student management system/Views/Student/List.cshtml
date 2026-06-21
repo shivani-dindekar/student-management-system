@@ -1,55 +1,140 @@
-﻿
-
-
-<script src="~/Scripts/jquery-3.7.0.min.js"></script>
-<script src="~/Content/Student.js"></script>
+﻿<script src="~/Scripts/jquery-3.7.0.min.js"></script>
+    <script src="~/Content/Student.js"></script>
 
 
 
+    @*@model List<student_management_system.Models.Studentmodel>
+
+    @{
+        ViewBag.Title = "List";
+    }
+
+    <h2>Student List</h2>
+    @using (Html.BeginForm("List", "Student", FormMethod.Get))
+    {
+        <input type="text" name="search" placeholder="Search Student Name" />
+        <input type="submit" value="Search" />
+    }
+    <a href="/Student/List">Show All</a>
+    <br />
+
+
+
+
+    <table border="1" cellpadding="10">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Course</th>
+            <th>Fees</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Name</td>
+                <td>@item.Course</td>
+                <td>@item.Fees</td>
+                <td>
+                    <a href="/Student/Edit/@item.Id">Edit</a>
+                </td>
+                <td>
+                    <button type="button" onclick="DeleteStudent(@item.Id)">
+                        Delete
+                    </button>
+
+                </td>
+            </tr>
+        }
+    </table>*@
 @model List<student_management_system.Models.Studentmodel>
 
 @{
     ViewBag.Title = "List";
 }
 
-<h2>Student List</h2>
-@using (Html.BeginForm("List", "Student", FormMethod.Get))
-{
-    <input type="text" name="search" placeholder="Search Student Name" />
-    <input type="submit" value="Search" />
-}
-<a href="/Student/List">Show All</a>
-<br />
+<div class="container mt-4">
 
+    <h2 class="text-center mb-4">Student Management System</h2>
 
+    <div class="card p-3 shadow">
 
+        @using (Html.BeginForm("List", "Student", FormMethod.Get))
+        {
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <input type="text"
+                           name="search"
+                           class="form-control"
+                           placeholder="Search Student Name" />
+                </div>
 
-<table border="1" cellpadding="10">
-    <tr>
-        <th>Id</th>
-        <th>Name</th>
-        <th>Course</th>
-        <th>Fees</th>
-        <th>Edit</th>
-        <th>Delete</th>
-    </tr>
+                <div class="col-md-2">
+                    <input type="submit"
+                           value="Search"
+                           class="btn btn-primary w-100" />
+                </div>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>@item.Id</td>
-            <td>@item.Name</td>
-            <td>@item.Course</td>
-            <td>@item.Fees</td>
-            <td>
-                <a href="/Student/Edit/@item.Id">Edit</a>
-            </td>
-            <td>
-                <button type="button" onclick="DeleteStudent(@item.Id)">
-                    Delete
-                </button>
+                <div class="col-md-2">
+                    <a href="/Student/List"
+                       class="btn btn-secondary w-100">
+                        Show All
+                    </a>
+                </div>
 
-            </td>
-        </tr>
-    }
-</table>
+                <div class="col-md-2">
+                    <a href="/Student/Add"
+                       class="btn btn-success w-100">
+                        Add Student
+                    </a>
+                </div>
+            </div>
+        }
+
+        <table class="table table-bordered table-striped table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Course</th>
+                    <th>Fees</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.Name</td>
+                        <td>@item.Course</td>
+                        <td>@item.Fees</td>
+
+                        <td>
+                            <a href="/Student/Edit/@item.Id"
+                               class="btn btn-warning btn-sm">
+                                Edit
+                            </a>
+                        </td>
+
+                        <td>
+                            <button type="button"
+                                    class="btn btn-danger btn-sm"
+                                    onclick="DeleteStudent(@item.Id)">
+                                Delete
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
